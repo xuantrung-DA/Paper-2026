@@ -1,0 +1,7 @@
+/data/raw/
+__pycache__/
+*.pyc
+/outputs/
+/data/processed/
+/logs/
+__init__.py

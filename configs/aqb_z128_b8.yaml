@@ -1,0 +1,5 @@
+# AQB config z=128 b=8
+model: aqb_fas
+z: 128
+bitrate: 8
+batch_size: 16

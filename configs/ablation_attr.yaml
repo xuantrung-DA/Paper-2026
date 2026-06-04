@@ -1,0 +1,3 @@
+# Ablation: attribute branch removed
+model: aqb_fas
+ablation: attr

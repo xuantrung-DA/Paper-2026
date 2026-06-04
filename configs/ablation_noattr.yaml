@@ -1,0 +1,3 @@
+# Ablation: no attribute branch
+model: aqb_fas
+ablation: noattr

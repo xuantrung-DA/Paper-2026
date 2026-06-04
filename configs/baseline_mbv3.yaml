@@ -1,0 +1,5 @@
+# baseline MobileNetV3 config
+model: baseline_mbv3
+batch_size: 32
+lr: 1e-3
+epochs: 50
