@@ -1,19 +1,19 @@
 seed: 42
-run_name: baseline_mbv3
+run_name: debug_2k
 device: cuda
 
 data:
-  train_csv: data/processed/train.csv
-  val_csv: data/processed/val.csv
-  test_csv: data/processed/test.csv
+  train_csv: data/processed/debug_2k.csv
+  val_csv: data/processed/debug_2k.csv
+  test_csv: data/processed/debug_2k.csv
   image_size: 224
-  batch_size: 32
-  num_workers: 2
+  batch_size: 16
+  num_workers: 0
   balanced_sampler: true
 
 model:
   name: baseline_mbv3
-  pretrained: true
+  pretrained: false
   dropout: 0.2
 
 loss:
@@ -23,12 +23,12 @@ loss:
   gamma_proto: 0.0
 
 train:
-  epochs: 10
+  epochs: 2
   lr: 0.0003
   weight_decay: 0.0001
   amp: true
-  early_stop_patience: 3
+  early_stop_patience: 2
   metric_to_select: val_acer
 
 output:
-  run_dir: outputs/runs/baseline_mbv3
+  run_dir: outputs/runs/debug_2k
