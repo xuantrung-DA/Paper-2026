@@ -1,5 +1,38 @@
-# AQB config z=16 b=8
-model: aqb_fas
-z: 16
-bitrate: 8
-batch_size: 32
+seed: 42
+run_name: aqb_z16_b8
+device: cuda
+
+data:
+  train_csv: data/processed/train.csv
+  val_csv: data/processed/val.csv
+  test_csv: data/processed/test.csv
+  image_size: 224
+  batch_size: 32
+  num_workers: 2
+  balanced_sampler: true
+
+model:
+  name: aqb_fas
+  pretrained: true
+  dz: 16
+  bits: 8
+  dropout: 0.2
+  noise_std: 0.0
+  drop_prob: 0.0
+
+loss:
+  lambda_spoof: 0.3
+  lambda_illum: 0.1
+  lambda_env: 0.1
+  gamma_proto: 0.05
+
+train:
+  epochs: 10
+  lr: 0.0003
+  weight_decay: 0.0001
+  amp: true
+  early_stop_patience: 3
+  metric_to_select: val_acer
+
+output:
+  run_dir: outputs/runs/aqb_z16_b8

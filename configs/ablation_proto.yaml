@@ -1,3 +1,19 @@
-# Ablation: prototype branch
-model: aqb_fas
-ablation: proto
+run_name: ablation_proto
+
+model:
+  name: aqb_fas
+  pretrained: true
+  dz: 64
+  bits: 8
+  dropout: 0.2
+  noise_std: 0.0
+  drop_prob: 0.0
+
+loss:
+  lambda_spoof: 0.3
+  lambda_illum: 0.1
+  lambda_env: 0.1
+  gamma_proto: 0.05
+
+output:
+  run_dir: outputs/runs/ablation_proto
