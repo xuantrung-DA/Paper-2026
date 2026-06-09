@@ -1,0 +1,38 @@
+seed: 42
+run_name: debug_aqb_z64_b8
+device: xpu
+
+data:
+  train_csv: data/processed/debug_2k.csv
+  val_csv: data/processed/debug_2k.csv
+  test_csv: data/processed/debug_2k.csv
+  image_size: 224
+  batch_size: 8
+  num_workers: 0
+  balanced_sampler: false
+
+model:
+  name: aqb_fas
+  pretrained: false
+  dz: 64
+  bits: 8
+  dropout: 0.2
+  noise_std: 0.0
+  drop_prob: 0.0
+
+loss:
+  lambda_spoof: 0.3
+  lambda_illum: 0.1
+  lambda_env: 0.1
+  gamma_proto: 0.05
+
+train:
+  epochs: 1
+  lr: 0.0003
+  weight_decay: 0.0001
+  amp: true
+  early_stop_patience: 1
+  metric_to_select: val_acer
+
+output:
+  run_dir: outputs/runs/debug_aqb_z64_b8

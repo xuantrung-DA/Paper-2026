@@ -1,6 +1,6 @@
 seed: 42
 run_name: debug_2k
-device: cuda
+device: xpu
 
 data:
   train_csv: data/processed/debug_2k.csv

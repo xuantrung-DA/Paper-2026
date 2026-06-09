@@ -1,7 +1,14 @@
 from typing import Dict, Tuple
 
 import numpy as np
-from sklearn.metrics import accuracy_score, f1_score, roc_auc_score, confusion_matrix
+from sklearn.metrics import (
+    accuracy_score,
+    confusion_matrix,
+    f1_score,
+    precision_score,
+    recall_score,
+    roc_auc_score,
+)
 
 
 def compute_pad_metrics(
@@ -29,6 +36,8 @@ def compute_pad_metrics(
     y_pred = (y_score >= threshold).astype(int)
 
     acc = accuracy_score(y_true, y_pred)
+    precision = precision_score(y_true, y_pred, zero_division=0)
+    recall = recall_score(y_true, y_pred, zero_division=0)
     f1 = f1_score(y_true, y_pred, zero_division=0)
 
     try:
@@ -49,6 +58,8 @@ def compute_pad_metrics(
 
     return {
         "acc": float(acc),
+        "precision": float(precision),
+        "recall": float(recall),
         "f1": float(f1),
         "auc": float(auc),
         "apcer": float(apcer),
