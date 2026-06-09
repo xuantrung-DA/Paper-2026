@@ -19,6 +19,8 @@ def set_seed(seed: int = 42) -> None:
     np.random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed_all(seed)
+    if hasattr(torch, "xpu") and torch.xpu.is_available():
+        torch.xpu.manual_seed_all(seed)
 
     # Reproducible hơn, có thể hơi chậm hơn.
     torch.backends.cudnn.deterministic = False
@@ -26,6 +28,18 @@ def set_seed(seed: int = 42) -> None:
 
 
 def get_device(device_name: str = "cuda") -> torch.device:
+    if device_name == "auto":
+        if hasattr(torch, "xpu") and torch.xpu.is_available():
+            return torch.device("xpu")
+        if torch.cuda.is_available():
+            return torch.device("cuda")
+        return torch.device("cpu")
+
+    if device_name == "xpu":
+        if hasattr(torch, "xpu") and torch.xpu.is_available():
+            return torch.device("xpu")
+        return torch.device("cpu")
+
     if device_name == "cuda" and torch.cuda.is_available():
         return torch.device("cuda")
     return torch.device("cpu")
