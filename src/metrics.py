@@ -87,7 +87,15 @@ def find_best_threshold(
       2. Nếu ACER gần bằng nhau, chọn threshold có |APCER - BPCER| nhỏ hơn.
       3. Nếu vẫn gần bằng nhau, chọn threshold gần 0.5 hơn để tránh threshold cực đoan.
     """
-    thresholds = np.linspace(0.001, 0.999, num_thresholds)
+    thresholds = np.unique(
+        np.concatenate(
+            [
+                np.linspace(0.0, 1.0, num_thresholds),
+                np.logspace(-8, 0, 1000),
+            ]
+        )
+    )
+    thresholds = thresholds[(thresholds >= 0.0) & (thresholds <= 1.0)]
 
     best_threshold = 0.5
     best_metrics = None
