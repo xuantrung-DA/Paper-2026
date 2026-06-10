@@ -131,6 +131,50 @@ def find_best_threshold(
 
     return best_threshold, best_metrics
 
+def find_threshold_by_target_bpcer(
+    y_true,
+    y_score,
+    target_bpcer: float = 0.02,
+):
+    """
+    Chọn threshold trên validation set theo operating point:
+      - BPCER <= target_bpcer
+      - trong các threshold hợp lệ, chọn threshold thấp nhất
+        để giảm APCER / tăng spoof recall.
+
+    Quy ước:
+      y_true = 0 live, 1 spoof
+      y_score = probability of spoof
+    """
+    y_score = np.asarray(y_score).astype(float)
+
+    # Dùng cả linear grid và log grid vì score hiện rất sát 0 hoặc 1.
+    thresholds = np.unique(
+        np.concatenate(
+            [
+                np.linspace(0.0, 1.0, 1001),
+                np.logspace(-8, 0, 1000),
+            ]
+        )
+    )
+    thresholds = thresholds[(thresholds >= 0.0) & (thresholds <= 1.0)]
+
+    all_metrics = []
+    for th in thresholds:
+        m = compute_pad_metrics(y_true, y_score, threshold=float(th))
+        all_metrics.append(m)
+
+    valid = [m for m in all_metrics if m["bpcer"] <= target_bpcer]
+
+    if valid:
+        # Chọn threshold thấp nhất còn giữ BPCER trong target.
+        best = min(valid, key=lambda m: m["threshold"])
+    else:
+        # Fallback: nếu không threshold nào đạt BPCER target,
+        # chọn threshold có BPCER thấp nhất rồi ACER thấp nhất.
+        best = min(all_metrics, key=lambda m: (m["bpcer"], m["acer"]))
+
+    return float(best["threshold"]), best
 
 def latent_bits(dz: int, bits: int) -> int:
     return int(dz) * int(bits)
