@@ -35,6 +35,16 @@ def main():
     print("best_threshold:", best_th)
     print("best_metrics:", best_metrics)
 
+    tie_y_true = np.array([0, 1])
+    tie_y_score = np.array([0.2, 0.8])
+    tie_best_th, tie_best_metrics = find_best_threshold(tie_y_true, tie_y_score)
+
+    print("tie_best_threshold:", tie_best_th)
+    print("tie_best_metrics:", tie_best_metrics)
+
+    assert abs(tie_best_th - 0.5) < 1e-12
+    assert abs(tie_best_metrics["acer"] - 0.0) < 1e-12
+
     assert latent_bits(64, 8) == 512
     assert raw_image_bits(224, 224, 3, 8) == 1204224
 

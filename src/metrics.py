@@ -76,16 +76,22 @@ def compute_pad_metrics(
 def find_best_threshold(
     y_true,
     y_score,
-    num_thresholds: int = 199,
+    num_thresholds: int = 999,
+    prefer_balanced: bool = True,
 ) -> Tuple[float, Dict[str, float]]:
     """
     Chọn threshold trên validation set theo ACER thấp nhất.
-    Tuyệt đối không chọn threshold bằng test set.
+
+    Tie-break:
+      1. ACER nhỏ hơn.
+      2. Nếu ACER gần bằng nhau, chọn threshold có |APCER - BPCER| nhỏ hơn.
+      3. Nếu vẫn gần bằng nhau, chọn threshold gần 0.5 hơn để tránh threshold cực đoan.
     """
     thresholds = np.linspace(0.001, 0.999, num_thresholds)
 
     best_threshold = 0.5
     best_metrics = None
+    eps = 1e-12
 
     for th in thresholds:
         metrics = compute_pad_metrics(y_true, y_score, threshold=float(th))
@@ -95,7 +101,31 @@ def find_best_threshold(
             best_metrics = metrics
             continue
 
-        if metrics["acer"] < best_metrics["acer"]:
+        cur_acer = metrics["acer"]
+        best_acer = best_metrics["acer"]
+
+        better_acer = cur_acer < best_acer - eps
+
+        if prefer_balanced:
+            cur_balance = abs(metrics["apcer"] - metrics["bpcer"])
+            best_balance = abs(best_metrics["apcer"] - best_metrics["bpcer"])
+            better_tie = (
+                abs(cur_acer - best_acer) <= eps
+                and (
+                    cur_balance < best_balance - eps
+                    or (
+                        abs(cur_balance - best_balance) <= eps
+                        and abs(float(th) - 0.5) < abs(best_threshold - 0.5)
+                    )
+                )
+            )
+        else:
+            better_tie = (
+                abs(cur_acer - best_acer) <= eps
+                and abs(float(th) - 0.5) < abs(best_threshold - 0.5)
+            )
+
+        if better_acer or better_tie:
             best_threshold = float(th)
             best_metrics = metrics
 

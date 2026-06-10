@@ -49,17 +49,22 @@ def main():
     )
 
     threshold = args.threshold
+    threshold_source = "cli"
+
     if threshold is None and best_metrics_path.exists():
         import json
 
         with open(best_metrics_path, "r", encoding="utf-8") as f:
             best_metrics = json.load(f)
         threshold = float(best_metrics["val_metrics"]["threshold"])
+        threshold_source = "val_best_metrics"
+
     if threshold is None:
         threshold = 0.5
+        threshold_source = "default_0.5"
 
     metrics = evaluate_loader(model, test_loader, device, threshold=threshold)
-    metrics["threshold_source"] = "val"
+    metrics["threshold_source"] = threshold_source
     save_json(metrics, str(out_path))
 
     print(
