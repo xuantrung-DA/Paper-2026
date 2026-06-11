@@ -184,6 +184,37 @@ def find_threshold_by_target_bpcer(
 
     return float(best["threshold"]), best
 
+def find_threshold_by_target_bpcer(
+    y_true,
+    y_score,
+    target_bpcer: float = 0.02,
+) -> Tuple[float, Dict[str, float]]:
+    y_score = np.asarray(y_score).astype(float)
+
+    thresholds = np.unique(
+        np.concatenate(
+            [
+                np.linspace(0.0, 1.0, 1001),
+                np.logspace(-8, 0, 1000),
+            ]
+        )
+    )
+    thresholds = thresholds[(thresholds >= 0.0) & (thresholds <= 1.0)]
+
+    all_metrics = [
+        compute_pad_metrics(y_true, y_score, threshold=float(th))
+        for th in thresholds
+    ]
+    valid = [m for m in all_metrics if m["bpcer"] <= target_bpcer]
+
+    if valid:
+        best = min(valid, key=lambda m: m["threshold"])
+    else:
+        best = min(all_metrics, key=lambda m: (m["bpcer"], m["acer"]))
+
+    return float(best["threshold"]), best
+
+
 def latent_bits(dz: int, bits: int) -> int:
     return int(dz) * int(bits)
 

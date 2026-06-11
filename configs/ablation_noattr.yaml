@@ -7,8 +7,8 @@ data:
   val_csv: data/processed/val.csv
   test_csv: data/processed/test.csv
   image_size: 224
-  batch_size: 128
-  num_workers: 2
+  batch_size: 80
+  num_workers: 4
   persistent_workers: false
   prefetch_factor: 2
   balanced_sampler: true

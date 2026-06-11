@@ -1,0 +1,166 @@
+(semcomfas) PS D:\Paper2026\Paper-2026> $runs = @(
+>>   "baseline_mbv3",
+>>   "aqb_z64_b8",
+>>   "ablation_noattr",
+>>   "ablation_attr",
+>>   "ablation_proto",
+>>   "aqb_z16_b8",
+>>   "aqb_z32_b8",
+>>   "aqb_z128_b8",
+>>   "aqb_z64_b4"
+>> )
+>> 
+>> foreach ($r in $runs) {
+>>   $cfg = "configs\$r.yaml"
+>>   $ckpt = "outputs\runs\$r\best.pt"
+>> 
+>>   if (Test-Path $ckpt) {
+>>     Write-Host "===== Diagnose $r ====="
+>>     python scripts\diagnose_thresholds.py --config $cfg --checkpoint $ckpt
+>>   } else {
+>>     Write-Host "SKIP $r because checkpoint not found: $ckpt"
+>>   }
+>> }
+===== Diagnose baseline_mbv3 =====
+[DEVICE] xpu
+[CHECKPOINT] outputs\runs\baseline_mbv3\best.pt
+[THRESHOLD] 0.999000 source=val_best_metrics
+[VAL] checkpoint_th=0.9990 acer=0.0011 apcer=0.0006 bpcer=0.0016 auc=0.9999 | best_split_th=0.9990 best_split_acer=0.0011
+[TEST] checkpoint_th=0.9990 acer=0.1119 apcer=0.2216 bpcer=0.0021 auc=0.9945 | best_split_th=0.0240 best_split_acer=0.0357
+
+[THRESHOLD POLICY COMPARISON]
+fixed_0_5: th=0.50000000 test_acer=0.0457 test_apcer=0.0771 test_bpcer=0.0143 test_auc=0.9945
+checkpoint_threshold: th=0.99900000 test_acer=0.1119 test_apcer=0.2216 test_bpcer=0.0021 test_auc=0.9945
+val_min_acer: th=0.99900000 test_acer=0.1119 test_apcer=0.2216 test_bpcer=0.0021 test_auc=0.9945
+val_target_bpcer_0.005: th=0.97300000 test_acer=0.0735 test_apcer=0.1416 test_bpcer=0.0055 test_auc=0.9945
+val_target_bpcer_0.010: th=0.79000000 test_acer=0.0544 test_apcer=0.0989 test_bpcer=0.0099 test_auc=0.9945
+val_target_bpcer_0.020: th=0.16300000 test_acer=0.0384 test_apcer=0.0555 test_bpcer=0.0213 test_auc=0.9945
+val_target_bpcer_0.050: th=0.00503155 test_acer=0.0388 test_apcer=0.0250 test_bpcer=0.0527 test_auc=0.9945
+test_oracle_do_not_report_as_main: th=0.02400000 test_acer=0.0357 test_apcer=0.0358 test_bpcer=0.0356 test_auc=0.9945
+[WRITE] outputs\runs\baseline_mbv3\diagnostics\threshold_policy_comparison.csv
+[WRITE] outputs\runs\baseline_mbv3\diagnostics\threshold_diagnostics.json
+[WRITE] outputs\runs\baseline_mbv3\diagnostics\val_predictions.csv
+[WRITE] outputs\runs\baseline_mbv3\diagnostics\test_predictions.csv
+===== Diagnose aqb_z64_b8 =====
+[DEVICE] xpu
+[CHECKPOINT] outputs\runs\aqb_z64_b8\best.pt
+[THRESHOLD] 0.817545 source=val_best_metrics
+[VAL] checkpoint_th=0.8175 acer=0.0005 apcer=0.0006 bpcer=0.0004 auc=1.0000 | best_split_th=0.8130 best_split_acer=0.0005
+[TEST] checkpoint_th=0.8175 acer=0.1408 apcer=0.2814 bpcer=0.0003 auc=0.9952 | best_split_th=0.0010 best_split_acer=0.0318
+
+[THRESHOLD POLICY COMPARISON]
+fixed_0_5: th=0.50000000 test_acer=0.1203 test_apcer=0.2401 test_bpcer=0.0004 test_auc=0.9952
+checkpoint_threshold: th=0.81754545 test_acer=0.1408 test_apcer=0.2814 test_bpcer=0.0003 test_auc=0.9952
+val_min_acer: th=0.81300000 test_acer=0.1404 test_apcer=0.2805 test_bpcer=0.0003 test_auc=0.9952
+val_target_bpcer_0.005: th=0.00616297 test_acer=0.0502 test_apcer=0.0969 test_bpcer=0.0035 test_auc=0.9952
+val_target_bpcer_0.010: th=0.00135873 test_acer=0.0338 test_apcer=0.0592 test_bpcer=0.0084 test_auc=0.9952
+val_target_bpcer_0.020: th=0.00038070 test_acer=0.0266 test_apcer=0.0347 test_bpcer=0.0185 test_auc=0.9952
+val_target_bpcer_0.050: th=0.00007654 test_acer=0.0336 test_apcer=0.0149 test_bpcer=0.0522 test_auc=0.9952
+test_oracle_do_not_report_as_main: th=0.00100000 test_acer=0.0318 test_apcer=0.0534 test_bpcer=0.0102 test_auc=0.9952
+[WRITE] outputs\runs\aqb_z64_b8\diagnostics\threshold_policy_comparison.csv
+[WRITE] outputs\runs\aqb_z64_b8\diagnostics\threshold_diagnostics.json
+[WRITE] outputs\runs\aqb_z64_b8\diagnostics\val_predictions.csv
+[WRITE] outputs\runs\aqb_z64_b8\diagnostics\test_predictions.csv
+===== Diagnose ablation_noattr =====
+[DEVICE] xpu
+[CHECKPOINT] outputs\runs\ablation_noattr\best.pt
+[THRESHOLD] 0.268000 source=val_best_metrics
+[VAL] checkpoint_th=0.2680 acer=0.0033 apcer=0.0036 bpcer=0.0030 auc=0.9999 | best_split_th=0.2680 best_split_acer=0.0033
+[TEST] checkpoint_th=0.2680 acer=0.1670 apcer=0.3311 bpcer=0.0028 auc=0.9810 | best_split_th=0.0010 best_split_acer=0.0898
+
+[THRESHOLD POLICY COMPARISON]
+fixed_0_5: th=0.50000000 test_acer=0.1797 test_apcer=0.3574 test_bpcer=0.0019 test_auc=0.9810
+checkpoint_threshold: th=0.26800000 test_acer=0.1670 test_apcer=0.3311 test_bpcer=0.0028 test_auc=0.9810
+val_min_acer: th=0.26800000 test_acer=0.1670 test_apcer=0.3311 test_bpcer=0.0028 test_auc=0.9810
+val_target_bpcer_0.005: th=0.04042096 test_acer=0.1430 test_apcer=0.2809 test_bpcer=0.0051 test_auc=0.9810
+val_target_bpcer_0.010: th=0.00263889 test_acer=0.1055 test_apcer=0.1977 test_bpcer=0.0133 test_auc=0.9810
+val_target_bpcer_0.020: th=0.00068681 test_acer=0.0839 test_apcer=0.1443 test_bpcer=0.0235 test_auc=0.9810
+val_target_bpcer_0.050: th=0.00016913 test_acer=0.0694 test_apcer=0.0818 test_bpcer=0.0569 test_auc=0.9810
+test_oracle_do_not_report_as_main: th=0.00100000 test_acer=0.0898 test_apcer=0.1608 test_bpcer=0.0188 test_auc=0.9810
+[WRITE] outputs\runs\ablation_noattr\diagnostics\threshold_policy_comparison.csv
+[WRITE] outputs\runs\ablation_noattr\diagnostics\threshold_diagnostics.json
+[WRITE] outputs\runs\ablation_noattr\diagnostics\val_predictions.csv
+[WRITE] outputs\runs\ablation_noattr\diagnostics\test_predictions.csv
+SKIP ablation_attr because checkpoint not found: outputs\runs\ablation_attr\best.pt
+SKIP ablation_proto because checkpoint not found: outputs\runs\ablation_proto\best.pt
+===== Diagnose aqb_z16_b8 =====
+[DEVICE] xpu
+[CHECKPOINT] outputs\runs\aqb_z16_b8\best.pt
+[THRESHOLD] 0.394152 source=val_best_metrics
+[VAL] checkpoint_th=0.3942 acer=0.0010 apcer=0.0012 bpcer=0.0008 auc=1.0000 | best_split_th=0.4280 best_split_acer=0.0010
+[TEST] checkpoint_th=0.3942 acer=0.1033 apcer=0.2057 bpcer=0.0010 auc=0.9961 | best_split_th=0.0010 best_split_acer=0.0303
+
+[THRESHOLD POLICY COMPARISON]
+fixed_0_5: th=0.50000000 test_acer=0.1102 test_apcer=0.2196 test_bpcer=0.0009 test_auc=0.9961
+checkpoint_threshold: th=0.39415152 test_acer=0.1033 test_apcer=0.2057 test_bpcer=0.0010 test_auc=0.9961
+val_min_acer: th=0.42800000 test_acer=0.1057 test_apcer=0.2104 test_bpcer=0.0009 test_auc=0.9961
+val_target_bpcer_0.005: th=0.01312557 test_acer=0.0503 test_apcer=0.0956 test_bpcer=0.0051 test_auc=0.9961
+val_target_bpcer_0.010: th=0.00354446 test_acer=0.0387 test_apcer=0.0668 test_bpcer=0.0105 test_auc=0.9961
+val_target_bpcer_0.020: th=0.00106913 test_acer=0.0305 test_apcer=0.0396 test_bpcer=0.0214 test_auc=0.9961
+val_target_bpcer_0.050: th=0.00037374 test_acer=0.0345 test_apcer=0.0192 test_bpcer=0.0498 test_auc=0.9961
+test_oracle_do_not_report_as_main: th=0.00100000 test_acer=0.0303 test_apcer=0.0382 test_bpcer=0.0224 test_auc=0.9961
+[WRITE] outputs\runs\aqb_z16_b8\diagnostics\threshold_policy_comparison.csv
+[WRITE] outputs\runs\aqb_z16_b8\diagnostics\threshold_diagnostics.json
+[WRITE] outputs\runs\aqb_z16_b8\diagnostics\val_predictions.csv
+[WRITE] outputs\runs\aqb_z16_b8\diagnostics\test_predictions.csv
+===== Diagnose aqb_z32_b8 =====
+[DEVICE] xpu
+[CHECKPOINT] outputs\runs\aqb_z32_b8\best.pt
+[THRESHOLD] 0.016121 source=val_best_metrics
+[VAL] checkpoint_th=0.0161 acer=0.0007 apcer=0.0008 bpcer=0.0006 auc=1.0000 | best_split_th=0.0160 best_split_acer=0.0007
+[TEST] checkpoint_th=0.0161 acer=0.1072 apcer=0.2137 bpcer=0.0008 auc=0.9960 | best_split_th=0.0010 best_split_acer=0.0635
+
+[THRESHOLD POLICY COMPARISON]
+fixed_0_5: th=0.50000000 test_acer=0.1584 test_apcer=0.3164 test_bpcer=0.0004 test_auc=0.9960
+checkpoint_threshold: th=0.01612121 test_acer=0.1072 test_apcer=0.2137 test_bpcer=0.0008 test_auc=0.9960
+val_min_acer: th=0.01600000 test_acer=0.1071 test_apcer=0.2134 test_bpcer=0.0008 test_auc=0.9960
+val_target_bpcer_0.005: th=0.00067426 test_acer=0.0576 test_apcer=0.1112 test_bpcer=0.0039 test_auc=0.9960
+val_target_bpcer_0.010: th=0.00018208 test_acer=0.0399 test_apcer=0.0695 test_bpcer=0.0103 test_auc=0.9960
+val_target_bpcer_0.020: th=0.00007242 test_acer=0.0329 test_apcer=0.0432 test_bpcer=0.0225 test_auc=0.9960
+val_target_bpcer_0.050: th=0.00002579 test_acer=0.0355 test_apcer=0.0197 test_bpcer=0.0513 test_auc=0.9960
+test_oracle_do_not_report_as_main: th=0.00100000 test_acer=0.0635 test_apcer=0.1238 test_bpcer=0.0031 test_auc=0.9960
+[WRITE] outputs\runs\aqb_z32_b8\diagnostics\threshold_policy_comparison.csv
+[WRITE] outputs\runs\aqb_z32_b8\diagnostics\threshold_diagnostics.json
+[WRITE] outputs\runs\aqb_z32_b8\diagnostics\val_predictions.csv
+[WRITE] outputs\runs\aqb_z32_b8\diagnostics\test_predictions.csv
+===== Diagnose aqb_z128_b8 =====
+[DEVICE] xpu
+[CHECKPOINT] outputs\runs\aqb_z128_b8\best.pt
+[THRESHOLD] 0.777222 source=val_best_metrics
+[VAL] checkpoint_th=0.7772 acer=0.0015 apcer=0.0016 bpcer=0.0013 auc=1.0000 | best_split_th=0.7740 best_split_acer=0.0014
+[TEST] checkpoint_th=0.7772 acer=0.1606 apcer=0.3194 bpcer=0.0017 auc=0.9848 | best_split_th=0.0010 best_split_acer=0.0700
+
+[THRESHOLD POLICY COMPARISON]
+fixed_0_5: th=0.50000000 test_acer=0.1471 test_apcer=0.2918 test_bpcer=0.0024 test_auc=0.9848
+checkpoint_threshold: th=0.77722222 test_acer=0.1606 test_apcer=0.3194 test_bpcer=0.0017 test_auc=0.9848
+val_min_acer: th=0.77400000 test_acer=0.1604 test_apcer=0.3190 test_bpcer=0.0017 test_auc=0.9848
+val_target_bpcer_0.005: th=0.05953533 test_acer=0.1183 test_apcer=0.2302 test_bpcer=0.0064 test_auc=0.9848
+val_target_bpcer_0.010: th=0.00858883 test_acer=0.0939 test_apcer=0.1739 test_bpcer=0.0139 test_auc=0.9848
+val_target_bpcer_0.020: th=0.00166426 test_acer=0.0743 test_apcer=0.1202 test_bpcer=0.0284 test_auc=0.9848
+val_target_bpcer_0.050: th=0.00029955 test_acer=0.0650 test_apcer=0.0615 test_bpcer=0.0686 test_auc=0.9848
+test_oracle_do_not_report_as_main: th=0.00100000 test_acer=0.0700 test_apcer=0.1040 test_bpcer=0.0360 test_auc=0.9848
+[WRITE] outputs\runs\aqb_z128_b8\diagnostics\threshold_policy_comparison.csv
+[WRITE] outputs\runs\aqb_z128_b8\diagnostics\threshold_diagnostics.json
+[WRITE] outputs\runs\aqb_z128_b8\diagnostics\val_predictions.csv
+[WRITE] outputs\runs\aqb_z128_b8\diagnostics\test_predictions.csv
+===== Diagnose aqb_z64_b4 =====
+[DEVICE] xpu
+[CHECKPOINT] outputs\runs\aqb_z64_b4\best.pt
+[THRESHOLD] 0.308465 source=val_best_metrics
+[VAL] checkpoint_th=0.3085 acer=0.0009 apcer=0.0009 bpcer=0.0010 auc=1.0000 | best_split_th=0.3070 best_split_acer=0.0009
+[TEST] checkpoint_th=0.3085 acer=0.1257 apcer=0.2502 bpcer=0.0011 auc=0.9964 | best_split_th=0.0010 best_split_acer=0.0297
+
+[THRESHOLD POLICY COMPARISON]
+fixed_0_5: th=0.50000000 test_acer=0.1388 test_apcer=0.2768 test_bpcer=0.0007 test_auc=0.9964
+checkpoint_threshold: th=0.30846465 test_acer=0.1257 test_apcer=0.2502 test_bpcer=0.0011 test_auc=0.9964
+val_min_acer: th=0.30700000 test_acer=0.1255 test_apcer=0.2499 test_bpcer=0.0011 test_auc=0.9964
+val_target_bpcer_0.005: th=0.01219231 test_acer=0.0627 test_apcer=0.1204 test_bpcer=0.0051 test_auc=0.9964
+val_target_bpcer_0.010: th=0.00317323 test_acer=0.0400 test_apcer=0.0691 test_bpcer=0.0108 test_auc=0.9964
+val_target_bpcer_0.020: th=0.00115096 test_acer=0.0307 test_apcer=0.0400 test_bpcer=0.0213 test_auc=0.9964
+val_target_bpcer_0.050: th=0.00036021 test_acer=0.0344 test_apcer=0.0151 test_bpcer=0.0538 test_auc=0.9964
+test_oracle_do_not_report_as_main: th=0.00100000 test_acer=0.0297 test_apcer=0.0362 test_bpcer=0.0232 test_auc=0.9964
+[WRITE] outputs\runs\aqb_z64_b4\diagnostics\threshold_policy_comparison.csv
+[WRITE] outputs\runs\aqb_z64_b4\diagnostics\threshold_diagnostics.json
+[WRITE] outputs\runs\aqb_z64_b4\diagnostics\val_predictions.csv
+[WRITE] outputs\runs\aqb_z64_b4\diagnostics\test_predictions.csv
+(semcomfas) PS D:\Paper2026\Paper-2026> 
