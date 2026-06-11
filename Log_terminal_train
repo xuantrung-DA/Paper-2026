@@ -153,3 +153,109 @@ train:   4%|██████▏                                               
 [DONE] artifacts generated
 ================================================================================
 [DONE] pipeline finished
+
+# ================================================================================
+
+(semcomfas) PS D:\Paper2026\Paper-2026> python scripts\run_pipeline.py --configs configs\ablation_attr.yaml configs\ablation_proto.yaml --resume
+================================================================================
+[RUN] configs\ablation_attr.yaml
+[DEVICE] xpu
+[RESUME] no checkpoint found; starting from scratch
+[EPOCH 1/10]
+[VAL] loss=0.1291 acer=0.0046 auc=0.9998 threshold=0.6640                                                                                                                                                                         
+[SAVE] best checkpoint -> outputs\runs\ablation_attr\best.pt
+[EPOCH 2/10]
+[VAL] loss=0.0455 acer=0.0010 auc=1.0000 threshold=0.7850                                                                                                                                                                         
+[SAVE] best checkpoint -> outputs\runs\ablation_attr\best.pt
+[EPOCH 3/10]
+[VAL] loss=0.0295 acer=0.0011 auc=1.0000 threshold=0.0640                                                                                                                                                                         
+[EPOCH 4/10]
+[VAL] loss=0.0224 acer=0.0031 auc=1.0000 threshold=0.9700                                                                                                                                                                         
+[EPOCH 5/10]
+[VAL] loss=0.0186 acer=0.0014 auc=1.0000 threshold=0.8020                                                                                                                                                                         
+[EARLY STOP] no improvement for 3 epochs
+[DONE] best_epoch=1 best_val_acer=0.0010
+--------------------------------------------------------------------------------
+[TEST] configs\ablation_attr.yaml
+[DEVICE] xpu
+[CHECKPOINT] outputs\runs\ablation_attr\best.pt
+[TEST] acer=0.1168 auc=0.9966 acc=0.8361 threshold=0.7850
+[WRITE] outputs\runs\ablation_attr\test_metrics.json
+================================================================================
+[RUN] configs\ablation_proto.yaml
+[DEVICE] xpu
+[RESUME] no checkpoint found; starting from scratch
+[EPOCH 1/10]
+train: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▉| 5570/5572 [23:06<00:00,  4.74it/s, loss=0.0435]C:\Users\Admin\miniconda3\envs\semcomfas\Lib\site-packages\torch\autograd\graph.py:882: UserWarning: An output with one or more elements was resized since it had shape [1, 9, 64], which does not match the required output shape [9, 64]. This behavior is deprecated, and in a future PyTorch release outputs will not be resized unless they have zero elements. You can explicitly reuse an out tensor t by resizing it, inplace, to zero elements with t.resize_(0). (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\Resize.cpp:38.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+C:\Users\Admin\miniconda3\envs\semcomfas\Lib\site-packages\torch\autograd\graph.py:882: UserWarning: An output with one or more elements was resized since it had shape [1, 2, 64], which does not match the required output shape [2, 64]. This behavior is deprecated, and in a future PyTorch release outputs will not be resized unless they have zero elements. You can explicitly reuse an out tensor t by resizing it, inplace, to zero elements with t.resize_(0). (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\Resize.cpp:38.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[VAL] loss=0.1313 acer=0.0032 auc=0.9999 threshold=0.0520                                                                                                                                                                         
+[SAVE] best checkpoint -> outputs\runs\ablation_proto\best.pt
+[EPOCH 2/10]
+train: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▉| 5571/5572 [22:08<00:00,  5.77it/s, loss=0.0809]C:\Users\Admin\miniconda3\envs\semcomfas\Lib\site-packages\torch\autograd\graph.py:882: UserWarning: An output with one or more elements was resized since it had shape [1, 9, 64], which does not match the required output shape [9, 64]. This behavior is deprecated, and in a future PyTorch release outputs will not be resized unless they have zero elements. You can explicitly reuse an out tensor t by resizing it, inplace, to zero elements with t.resize_(0). (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\Resize.cpp:38.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+C:\Users\Admin\miniconda3\envs\semcomfas\Lib\site-packages\torch\autograd\graph.py:882: UserWarning: An output with one or more elements was resized since it had shape [1, 2, 64], which does not match the required output shape [2, 64]. This behavior is deprecated, and in a future PyTorch release outputs will not be resized unless they have zero elements. You can explicitly reuse an out tensor t by resizing it, inplace, to zero elements with t.resize_(0). (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\Resize.cpp:38.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[VAL] loss=0.0461 acer=0.0011 auc=1.0000 threshold=0.2740                                                                                                                                                                         
+[SAVE] best checkpoint -> outputs\runs\ablation_proto\best.pt
+[EPOCH 3/10]
+train: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▉| 5570/5572 [22:03<00:00,  5.28it/s, loss=0.0401]C:\Users\Admin\miniconda3\envs\semcomfas\Lib\site-packages\torch\autograd\graph.py:882: UserWarning: An output with one or more elements was resized since it had shape [1, 9, 64], which does not match the required output shape [9, 64]. This behavior is deprecated, and in a future PyTorch release outputs will not be resized unless they have zero elements. You can explicitly reuse an out tensor t by resizing it, inplace, to zero elements with t.resize_(0). (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\Resize.cpp:38.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+C:\Users\Admin\miniconda3\envs\semcomfas\Lib\site-packages\torch\autograd\graph.py:882: UserWarning: An output with one or more elements was resized since it had shape [1, 2, 64], which does not match the required output shape [2, 64]. This behavior is deprecated, and in a future PyTorch release outputs will not be resized unless they have zero elements. You can explicitly reuse an out tensor t by resizing it, inplace, to zero elements with t.resize_(0). (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\Resize.cpp:38.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[VAL] loss=0.0304 acer=0.0017 auc=1.0000 threshold=0.5400                                                                                                                                                                         
+[EPOCH 4/10]
+train: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▉| 5571/5572 [22:01<00:00,  3.81it/s, loss=0.0243]C:\Users\Admin\miniconda3\envs\semcomfas\Lib\site-packages\torch\autograd\graph.py:882: UserWarning: An output with one or more elements was resized since it had shape [1, 9, 64], which does not match the required output shape [9, 64]. This behavior is deprecated, and in a future PyTorch release outputs will not be resized unless they have zero elements. You can explicitly reuse an out tensor t by resizing it, inplace, to zero elements with t.resize_(0). (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\Resize.cpp:38.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+C:\Users\Admin\miniconda3\envs\semcomfas\Lib\site-packages\torch\autograd\graph.py:882: UserWarning: An output with one or more elements was resized since it had shape [1, 2, 64], which does not match the required output shape [2, 64]. This behavior is deprecated, and in a future PyTorch release outputs will not be resized unless they have zero elements. You can explicitly reuse an out tensor t by resizing it, inplace, to zero elements with t.resize_(0). (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\Resize.cpp:38.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[VAL] loss=0.0226 acer=0.0015 auc=1.0000 threshold=0.7690                                                                                                                                                                         
+[EPOCH 5/10]
+train: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▉| 5571/5572 [21:39<00:00,  5.33it/s, loss=0.0018]C:\Users\Admin\miniconda3\envs\semcomfas\Lib\site-packages\torch\autograd\graph.py:882: UserWarning: An output with one or more elements was resized since it had shape [1, 9, 64], which does not match the required output shape [9, 64]. This behavior is deprecated, and in a future PyTorch release outputs will not be resized unless they have zero elements. You can explicitly reuse an out tensor t by resizing it, inplace, to zero elements with t.resize_(0). (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\Resize.cpp:38.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+C:\Users\Admin\miniconda3\envs\semcomfas\Lib\site-packages\torch\autograd\graph.py:882: UserWarning: An output with one or more elements was resized since it had shape [1, 2, 64], which does not match the required output shape [2, 64]. This behavior is deprecated, and in a future PyTorch release outputs will not be resized unless they have zero elements. You can explicitly reuse an out tensor t by resizing it, inplace, to zero elements with t.resize_(0). (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\aten\src\ATen\native\Resize.cpp:38.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[VAL] loss=0.0185 acer=0.0029 auc=1.0000 threshold=0.4770                                                                                                                                                                         
+[EARLY STOP] no improvement for 3 epochs
+[DONE] best_epoch=1 best_val_acer=0.0011
+--------------------------------------------------------------------------------
+[TEST] configs\ablation_proto.yaml
+[DEVICE] xpu
+[CHECKPOINT] outputs\runs\ablation_proto\best.pt
+[TEST] acer=0.1396 auc=0.9952 acc=0.8038 threshold=0.2740
+[WRITE] outputs\runs\ablation_proto\test_metrics.json
+================================================================================
+[ARTIFACTS] generating tables and figures
+================================================================================
+[RUN] scripts/collect_results.py
+[WRITE] D:\Paper2026\Paper-2026\outputs\results\summary.csv rows=9
+================================================================================
+[RUN] scripts/make_tables.py
+[WRITE] D:\Paper2026\Paper-2026\outputs\tables\main_results.csv rows=9
+[WRITE] D:\Paper2026\Paper-2026\outputs\tables\main_results.tex
+================================================================================
+[RUN] scripts/plot_training_curves.py
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\training_curves_ablation_attr.png
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\training_curves_ablation_noattr.png
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\training_curves_ablation_proto.png
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\training_curves_aqb_z128_b8.png
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\training_curves_aqb_z16_b8.png
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\training_curves_aqb_z32_b8.png
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\training_curves_aqb_z64_b4.png
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\training_curves_aqb_z64_b8.png
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\training_curves_baseline_mbv3.png
+================================================================================
+[RUN] scripts/plot_utility_bitrate.py
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\utility_bitrate.png
+================================================================================
+[RUN] scripts/plot_ablation.py
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\ablation_acer.png
+================================================================================
+[RUN] scripts/plot_confusion_matrices.py
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\confusion_matrices.png
+================================================================================
+[DONE] artifacts generated
+================================================================================
+[DONE] pipeline finished
+(semcomfas) PS D:\Paper2026\Paper-2026> 
