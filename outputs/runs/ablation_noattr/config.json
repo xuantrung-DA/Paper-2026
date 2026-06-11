@@ -1,0 +1,43 @@
+{
+  "run_name": "ablation_noattr",
+  "seed": 42,
+  "device": "xpu",
+  "data": {
+    "train_csv": "data/processed/train.csv",
+    "val_csv": "data/processed/val.csv",
+    "test_csv": "data/processed/test.csv",
+    "image_size": 224,
+    "batch_size": 80,
+    "num_workers": 4,
+    "persistent_workers": false,
+    "prefetch_factor": 2,
+    "balanced_sampler": true
+  },
+  "model": {
+    "name": "aqb_fas",
+    "pretrained": true,
+    "dz": 64,
+    "bits": 8,
+    "dropout": 0.2,
+    "noise_std": 0.0,
+    "drop_prob": 0.0
+  },
+  "loss": {
+    "lambda_spoof": 0.0,
+    "lambda_illum": 0.0,
+    "lambda_env": 0.0,
+    "gamma_proto": 0.0
+  },
+  "train": {
+    "epochs": 10,
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "amp": true,
+    "channels_last": true,
+    "early_stop_patience": 3,
+    "metric_to_select": "val_acer"
+  },
+  "output": {
+    "run_dir": "outputs/runs/ablation_noattr"
+  }
+}
