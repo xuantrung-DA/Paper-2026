@@ -1,0 +1,155 @@
+(semcomfas) PS D:\Paper2026\Paper-2026> python scripts\run_pipeline.py --configs configs\aqb_z64_b8.yaml --resume             
+================================================================================
+[RUN] configs\aqb_z64_b8.yaml
+[DEVICE] xpu
+[RESUME] outputs\runs\aqb_z64_b8\last.pt not found; falling back to outputs\runs\aqb_z64_b8\best.pt
+[RESUME] loaded outputs\runs\aqb_z64_b8\best.pt at epoch=6
+[EPOCH 8/10]
+[VAL] loss=0.0118 acer=0.0017 auc=1.0000 threshold=0.3942                                                                         
+[EPOCH 9/10]
+[VAL] loss=0.0111 acer=0.0032 auc=0.9999 threshold=0.9839                                                                         
+[EPOCH 10/10]
+[VAL] loss=0.0100 acer=0.0013 auc=1.0000 threshold=0.1321                                                                         
+[EARLY STOP] no improvement for 3 epochs
+[DONE] best_epoch=6 best_val_acer=0.0005
+--------------------------------------------------------------------------------
+[TEST] configs\aqb_z64_b8.yaml
+[DEVICE] xpu
+[CHECKPOINT] outputs\runs\aqb_z64_b8\best.pt
+[TEST] acer=0.1408 auc=0.9952 acc=0.8020 threshold=0.8175
+[WRITE] outputs\runs\aqb_z64_b8\test_metrics.json
+================================================================================
+[ARTIFACTS] generating tables and figures
+================================================================================
+[RUN] scripts/collect_results.py
+[WRITE] D:\Paper2026\Paper-2026\outputs\results\summary.csv rows=2
+================================================================================
+[RUN] scripts/make_tables.py
+[WRITE] D:\Paper2026\Paper-2026\outputs\tables\main_results.csv rows=2
+[WRITE] D:\Paper2026\Paper-2026\outputs\tables\main_results.tex
+================================================================================
+[RUN] scripts/plot_training_curves.py
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\training_curves_aqb_z64_b8.png
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\training_curves_baseline_mbv3.png
+================================================================================
+[RUN] scripts/plot_utility_bitrate.py
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\utility_bitrate.png
+================================================================================
+[RUN] scripts/plot_ablation.py
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\ablation_acer.png
+================================================================================
+[DONE] artifacts generated
+================================================================================
+[DONE] pipeline finished
+(semcomfas) PS D:\Paper2026\Paper-2026> 
+
+# ================================================================================
+
+(semcomfas) PS D:\Paper2026\Paper-2026> python scripts\run_pipeline.py --configs configs\aqb_z32_b8.yaml configs\aqb_z64_b4.yaml configs\aqb_z128_b8.yaml --resume
+================================================================================
+[RUN] configs\aqb_z32_b8.yaml
+[DEVICE] xpu
+[RESUME] loaded outputs\runs\aqb_z32_b8\last.pt at epoch=5
+[EPOCH 7/10]
+train:   4%|██████▏                                                                                                                          train:   4%|██████▎                                                                                                                          train:   4%|██████▎                                                                                                                          train:   5%|██████▎                                                                                                                          train:   5%|██████▎                                                                                                                          train:   5%|██████▎                                                                                                                          train:   5%|██████▎                                                                                                                          [VAL] loss=0.0099 acer=0.0009 auc=1.0000 threshold=0.0665                                                                                                                                               
+[SAVE] best checkpoint -> outputs\runs\aqb_z32_b8\best.pt
+[EPOCH 8/10]
+[VAL] loss=0.0094 acer=0.0013 auc=1.0000 threshold=0.0111                                                                                                                                               
+[EPOCH 9/10]
+[VAL] loss=0.0082 acer=0.0007 auc=1.0000 threshold=0.0161                                                                                                                                               
+[SAVE] best checkpoint -> outputs\runs\aqb_z32_b8\best.pt
+[EPOCH 10/10]
+[VAL] loss=0.0076 acer=0.0023 auc=1.0000 threshold=0.3135                                                                                                                                               
+[DONE] best_epoch=8 best_val_acer=0.0007
+--------------------------------------------------------------------------------
+[TEST] configs\aqb_z32_b8.yaml
+[DEVICE] xpu
+[CHECKPOINT] outputs\runs\aqb_z32_b8\best.pt
+[TEST] acer=0.1072 auc=0.9960 acc=0.8495 threshold=0.0161
+[WRITE] outputs\runs\aqb_z32_b8\test_metrics.json
+================================================================================
+[RUN] configs\aqb_z64_b4.yaml
+[DEVICE] xpu
+[RESUME] no checkpoint found; starting from scratch
+[EPOCH 1/10]
+[VAL] loss=0.1393 acer=0.0026 auc=0.9999 threshold=0.0464                                                                                                                                               
+[SAVE] best checkpoint -> outputs\runs\aqb_z64_b4\best.pt
+[EPOCH 2/10]
+[VAL] loss=0.0429 acer=0.0009 auc=1.0000 threshold=0.3085                                                                                                                                               
+[SAVE] best checkpoint -> outputs\runs\aqb_z64_b4\best.pt
+[EPOCH 3/10]
+[VAL] loss=0.0271 acer=0.0010 auc=1.0000 threshold=0.1623                                                                                                                                               
+[EPOCH 4/10]
+[VAL] loss=0.0205 acer=0.0025 auc=1.0000 threshold=0.7621                                                                                                                                               
+[EPOCH 5/10]
+[VAL] loss=0.0169 acer=0.0012 auc=1.0000 threshold=0.9738                                                                                                                                               
+[EARLY STOP] no improvement for 3 epochs
+[DONE] best_epoch=1 best_val_acer=0.0009
+--------------------------------------------------------------------------------
+[TEST] configs\aqb_z64_b4.yaml
+[DEVICE] xpu
+[CHECKPOINT] outputs\runs\aqb_z64_b4\best.pt
+[TEST] acer=0.1257 auc=0.9964 acc=0.8237 threshold=0.3085
+[WRITE] outputs\runs\aqb_z64_b4\test_metrics.json
+================================================================================
+[RUN] configs\aqb_z128_b8.yaml
+[DEVICE] xpu
+[RESUME] no checkpoint found; starting from scratch
+[EPOCH 1/10]
+[VAL] loss=0.1326 acer=0.0018 auc=1.0000 threshold=0.5101                                                                                                                                               
+[SAVE] best checkpoint -> outputs\runs\aqb_z128_b8\best.pt
+[EPOCH 2/10]
+[VAL] loss=0.0409 acer=0.0021 auc=1.0000 threshold=0.0615                                                                                                                                               
+[EPOCH 3/10]
+[VAL] loss=0.0266 acer=0.0016 auc=1.0000 threshold=0.5605                                                                                                                                               
+[SAVE] best checkpoint -> outputs\runs\aqb_z128_b8\best.pt
+[EPOCH 4/10]
+[VAL] loss=0.0199 acer=0.0015 auc=1.0000 threshold=0.0060                                                                                                                                               
+[SAVE] best checkpoint -> outputs\runs\aqb_z128_b8\best.pt
+[EPOCH 5/10]
+[VAL] loss=0.0159 acer=0.0015 auc=1.0000 threshold=0.7772                                                                                                                                               
+[SAVE] best checkpoint -> outputs\runs\aqb_z128_b8\best.pt
+[EPOCH 6/10]
+[VAL] loss=0.0133 acer=0.0031 auc=0.9999 threshold=0.0464                                                                                                                                               
+[EPOCH 7/10]
+[VAL] loss=0.0112 acer=0.0042 auc=0.9999 threshold=0.2681                                                                                                                                               
+[EPOCH 8/10]
+[VAL] loss=0.0105 acer=0.0029 auc=1.0000 threshold=0.0161                                                                                                                                               
+[EARLY STOP] no improvement for 3 epochs
+[DONE] best_epoch=4 best_val_acer=0.0015
+--------------------------------------------------------------------------------
+[TEST] configs\aqb_z128_b8.yaml
+[DEVICE] xpu
+[CHECKPOINT] outputs\runs\aqb_z128_b8\best.pt
+[TEST] acer=0.1606 auc=0.9848 acc=0.7748 threshold=0.7772
+[WRITE] outputs\runs\aqb_z128_b8\test_metrics.json
+================================================================================
+[ARTIFACTS] generating tables and figures
+================================================================================
+[RUN] scripts/collect_results.py
+[WRITE] D:\Paper2026\Paper-2026\outputs\results\summary.csv rows=6
+================================================================================
+[RUN] scripts/make_tables.py
+[WRITE] D:\Paper2026\Paper-2026\outputs\tables\main_results.csv rows=6
+[WRITE] D:\Paper2026\Paper-2026\outputs\tables\main_results.tex
+================================================================================
+[RUN] scripts/plot_training_curves.py
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\training_curves_aqb_z128_b8.png
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\training_curves_aqb_z16_b8.png
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\training_curves_aqb_z32_b8.png
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\training_curves_aqb_z64_b4.png
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\training_curves_aqb_z64_b8.png
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\training_curves_baseline_mbv3.png
+================================================================================
+[RUN] scripts/plot_utility_bitrate.py
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\utility_bitrate.png
+================================================================================
+[RUN] scripts/plot_ablation.py
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\ablation_acer.png
+================================================================================
+[RUN] scripts/plot_confusion_matrices.py
+[WRITE] D:\Paper2026\Paper-2026\outputs\figures\confusion_matrices.png
+================================================================================
+[DONE] artifacts generated
+================================================================================
+[DONE] pipeline finished
