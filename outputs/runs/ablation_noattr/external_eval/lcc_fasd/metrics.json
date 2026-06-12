@@ -1,0 +1,22 @@
+{
+  "acc": 0.67796250066394,
+  "precision": 0.9667874396135265,
+  "recall": 0.6637251998815517,
+  "f1": 0.7870913368683499,
+  "auc": 0.8129234169353661,
+  "apcer": 0.33627480011844835,
+  "bpcer": 0.19824922760041194,
+  "acer": 0.26726201385943016,
+  "threshold": 0.0006868103588995,
+  "tn": 1557,
+  "fp": 385,
+  "fn": 5678,
+  "tp": 11207,
+  "run_name": "ablation_noattr",
+  "method": "Bottleneck-only",
+  "dataset": "lcc_fasd",
+  "num_samples": 18827,
+  "policy": "val_target_bpcer_0.020",
+  "threshold_source": "outputs\\runs\\ablation_noattr\\diagnostics\\threshold_policy_comparison.csv",
+  "checkpoint": "outputs\\runs\\ablation_noattr\\best.pt"
+}
