@@ -1,0 +1,22 @@
+{
+  "acc": 0.8175492643543847,
+  "precision": 0.9217887606623181,
+  "recall": 0.8704175303523838,
+  "f1": 0.8953669012153889,
+  "auc": 0.6961688187524073,
+  "apcer": 0.12958246964761622,
+  "bpcer": 0.6421215242018538,
+  "acer": 0.385851996924735,
+  "threshold": 0.000614877765381,
+  "tn": 695,
+  "fp": 1247,
+  "fn": 2188,
+  "tp": 14697,
+  "run_name": "ablation_proto",
+  "method": "+ Attribute heads + Prototype",
+  "dataset": "lcc_fasd",
+  "num_samples": 18827,
+  "policy": "val_target_bpcer_0.020",
+  "threshold_source": "outputs\\runs\\ablation_proto\\diagnostics\\threshold_policy_comparison.csv",
+  "checkpoint": "outputs\\runs\\ablation_proto\\best.pt"
+}

@@ -1,0 +1,22 @@
+{
+  "acc": 0.8205237159398736,
+  "precision": 0.9206428304472406,
+  "recall": 0.8753331359194552,
+  "f1": 0.8974164364431222,
+  "auc": 0.7177911887741238,
+  "apcer": 0.12466686408054486,
+  "bpcer": 0.6560247167868177,
+  "acer": 0.3903457904336813,
+  "threshold": 0.163,
+  "tn": 668,
+  "fp": 1274,
+  "fn": 2105,
+  "tp": 14780,
+  "run_name": "baseline_mbv3",
+  "method": "MobileNetV3 baseline",
+  "dataset": "lcc_fasd",
+  "num_samples": 18827,
+  "policy": "val_target_bpcer_0.020",
+  "threshold_source": "outputs\\runs\\baseline_mbv3\\diagnostics\\threshold_policy_comparison.csv",
+  "checkpoint": "outputs\\runs\\baseline_mbv3\\best.pt"
+}

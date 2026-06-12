@@ -1,0 +1,22 @@
+{
+  "acc": 0.8601476602751368,
+  "precision": 0.9225068184513222,
+  "recall": 0.9214687592537756,
+  "f1": 0.9219874966667654,
+  "auc": 0.7714172202031857,
+  "apcer": 0.07853124074622446,
+  "bpcer": 0.6730175077239959,
+  "acer": 0.3757743742351102,
+  "threshold": 7.242022334607315e-05,
+  "tn": 635,
+  "fp": 1307,
+  "fn": 1326,
+  "tp": 15559,
+  "run_name": "aqb_z32_b8",
+  "method": "AQB-FAS z32/b8",
+  "dataset": "lcc_fasd",
+  "num_samples": 18827,
+  "policy": "val_target_bpcer_0.020",
+  "threshold_source": "outputs\\runs\\aqb_z32_b8\\diagnostics\\threshold_policy_comparison.csv",
+  "checkpoint": "outputs\\runs\\aqb_z32_b8\\best.pt"
+}
