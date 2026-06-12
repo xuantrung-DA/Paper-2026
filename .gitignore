@@ -3,5 +3,8 @@ __pycache__/
 *.pyc
 /outputs/
 /data/raw
+data/evaluation/LCC_FASD_development/
+data/evaluation/LCC_FASD_evaluation/
+data/evaluation/LCC_FASD_training/
 /logs/
 __init__.py
